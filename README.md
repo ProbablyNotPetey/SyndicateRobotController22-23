@@ -1,3 +1,8 @@
+## Info
+
+This is the main repository for team 124 Supersonics (Formerly 6438 Syndicate) robot code.
+
+
 ## NOTICE
 
 This repository contains the public FTC SDK for the Freight Frenzy (2021-2022) competition season.
