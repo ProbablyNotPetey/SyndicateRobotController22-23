@@ -10,9 +10,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp(name = "Test SyndiOp")
+@TeleOp(name = "Test FancySyndiOp")
 //@Disabled
-public class TestTeleOp extends LinearOpMode {
+public class TestFancyTeleOp extends LinearOpMode {
 
     DcMotor FL;
     DcMotor FR;
@@ -72,11 +72,11 @@ public class TestTeleOp extends LinearOpMode {
                 polarTimeCounter += 100;
 
                 if((gamepad1.right_stick_x < 0.1 || gamepad1.right_stick_x > -0.1) &&
-                   (gamepad1.right_stick_y < 0.1 || gamepad1.right_stick_y > -0.1))
+                        (gamepad1.right_stick_y < 0.1 || gamepad1.right_stick_y > -0.1))
                     polarTimeCounter = 0;
 
                 if((gamepad1.left_stick_x < 0.1 || gamepad1.left_stick_x > -0.1) &&
-                   (gamepad1.left_stick_y < 0.1 || gamepad1.left_stick_y > -0.1))
+                        (gamepad1.left_stick_y < 0.1 || gamepad1.left_stick_y > -0.1))
                     rectTimeCounter = 0;
 
                 double rectCollapse = ConstantFunction.POLY2_COLLAPSE.apply(rectTimeCounter);
