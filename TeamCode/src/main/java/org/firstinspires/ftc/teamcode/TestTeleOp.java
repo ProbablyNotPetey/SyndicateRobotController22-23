@@ -54,7 +54,8 @@ public class TestTeleOp extends LinearOpMode {
             double x = gamepad1.left_stick_x;
             double rx = gamepad1.right_stick_x;
 
-            double time_counter = 0;
+            double rectTimeCounter = 0;
+            double polarTimeCounter = 0;
 
             while(gamepad1.right_stick_x != 0 ||
                     gamepad1.right_stick_y != 0 ||
@@ -62,12 +63,24 @@ public class TestTeleOp extends LinearOpMode {
                     gamepad1.left_stick_y != 0) {
 
                 sleep(100);
-                time_counter += 100;
+                rectTimeCounter += 100;
+                polarTimeCounter += 100;
 
-                FR.setPower((y - x - rx) * ConstantFunction.POLY2_COLLAPSE.apply(time_counter));
-                FL.setPower((y + x + rx) * ConstantFunction.POLY2_COLLAPSE.apply(time_counter));
-                BR.setPower((y + x - rx) * ConstantFunction.POLY2_COLLAPSE.apply(time_counter));
-                BL.setPower((y - x + rx) * ConstantFunction.POLY2_COLLAPSE.apply(time_counter));
+                if((gamepad1.right_stick_x < 0.1 || gamepad1.right_stick_x > -0.1) &&
+                   (gamepad1.right_stick_y < 0.1 || gamepad1.right_stick_y > -0.1))
+                    polarTimeCounter = 0;
+
+                if((gamepad1.left_stick_x < 0.1 || gamepad1.left_stick_x > -0.1) &&
+                   (gamepad1.left_stick_y < 0.1 || gamepad1.left_stick_y > -0.1))
+                    rectTimeCounter = 0;
+
+                double rectCollapse = ConstantFunction.POLY2_COLLAPSE.apply(rectTimeCounter);
+                double polarCollapse = ConstantFunction.POLY2_COLLAPSE.apply(polarTimeCounter);
+
+                FR.setPower((y - x) * rectCollapse - rx * polarCollapse);
+                FL.setPower((y + x) * rectCollapse + rx * polarCollapse);
+                BR.setPower((y + x) * rectCollapse - rx * polarCollapse);
+                BL.setPower((y - x) * rectCollapse + rx * polarCollapse);
             }
 
             telemetry.update();
