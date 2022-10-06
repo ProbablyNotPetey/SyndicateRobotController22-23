@@ -3,17 +3,15 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
 
-import org.firstinspires.ftc.teamcode.IMotorMethods;
-
 import java.util.Arrays;
 import java.util.List;
 
-public class Motors implements IMotorMethods {
+public class Motors {
     // Fields
     private DcMotor[] motors;
     public static String[] standardMotorOrder = {"FL" , "BL" , "FR" , "BR"};
 
-    // Constructor
+    // Constructorg
     public Motors(DcMotor... motors) {
         this.motors = motors;
     }
