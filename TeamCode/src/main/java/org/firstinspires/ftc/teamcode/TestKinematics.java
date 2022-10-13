@@ -48,6 +48,7 @@ public class TestKinematics extends LinearOpMode {
         final float sqrt2 = 1.414213f;
 
         while (opModeIsActive()) {
+            sleep(1);
             telemetry.addData("Status", "Running");
 
             double y = gamepad1.left_stick_y;
