@@ -55,14 +55,14 @@ public class TestKinematics extends LinearOpMode {
             double rx = gamepad1.right_stick_x;
 
             double angle = Math.atan2(y , x);
-            double transform = Math.sqrt(Math.sqrt(x * x + y * y) + Math.abs(rx)) / sqrt2;
+            double transform = Math.sqrt(Math.sqrt(x * x + y * y) + Math.abs(rx)) / 2;
 
             telemetry.addData("transform", transform);
 
-            FL.setPower(transform * ((Math.sin(angle) - Math.cos(angle)) / sqrt2));
-            FR.setPower(transform * ((-Math.sin(angle) - Math.cos(angle)) / sqrt2));
-            BL.setPower(transform * ((Math.sin(angle) + Math.cos(angle)) / sqrt2));
-            BR.setPower(transform * ((-Math.sin(angle) + Math.cos(angle)) / sqrt2));
+            FL.setPower(transform * (Math.sin(angle) - Math.cos(angle)));
+            FR.setPower(transform * (-Math.sin(angle) - Math.cos(angle)));
+            BL.setPower(transform * (Math.sin(angle) + Math.cos(angle)));
+            BR.setPower(transform * (-Math.sin(angle) + Math.cos(angle)));
 
             telemetry.addData("FL Power", FL.getPower());
             telemetry.addData("FL Raw" , (Math.sin(angle) - Math.cos(angle)) / sqrt2);
