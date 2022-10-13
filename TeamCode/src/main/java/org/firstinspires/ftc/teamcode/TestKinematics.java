@@ -45,7 +45,7 @@ public class TestKinematics extends LinearOpMode {
         waitForStart();
 
         long lastTimestamp = System.currentTimeMillis();
-        final float sqrt2 = 1.41421356237f;
+        final float sqrt2 = 1.414213f;
 
         while (opModeIsActive()) {
             telemetry.addData("Status", "Running");
