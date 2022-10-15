@@ -11,7 +11,7 @@ public class Motors {
     private DcMotor[] motors;
     public static String[] standardMotorOrder = {"FL" , "BL" , "FR" , "BR"};
 
-    // Constructor
+    // Constructorg
     public Motors(DcMotor... motors) {
         this.motors = motors;
     }
