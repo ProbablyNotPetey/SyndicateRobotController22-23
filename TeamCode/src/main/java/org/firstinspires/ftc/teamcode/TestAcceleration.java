@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp(name = "Test SyndiOp")
+@TeleOp(name = "Test SyndiOp Accel")
 //@Disabled
 public class TestAcceleration extends LinearOpMode {
 
