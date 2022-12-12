@@ -8,8 +8,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 import java.util.Arrays;
 import java.util.List;
-
-public class MotorsEx implements IMotorMethods {
+public class MotorsEx {
     // Fields
     private DcMotorEx[] motors;
 
