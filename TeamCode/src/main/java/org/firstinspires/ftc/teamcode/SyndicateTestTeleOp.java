@@ -5,9 +5,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.api.eventbus.TestMessageEvent;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 @TeleOp(name = "SyndiOp")
 //@Disabled
@@ -20,7 +17,6 @@ public class SyndicateTestTeleOp extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        EventBus.getDefault().register(this);
         int invertedControl = 1;
         FL = hardwareMap.get(DcMotor.class, "FL");
         FR = hardwareMap.get(DcMotor.class, "FR");
@@ -90,11 +86,6 @@ public class SyndicateTestTeleOp extends LinearOpMode {
 
             telemetry.update();
         }
-        EventBus.getDefault().unregister(this);
     }
 
-    @Subscribe
-    public void onMessageEvent(TestMessageEvent event) {
-        System.out.println(event.message);
-    }
 }

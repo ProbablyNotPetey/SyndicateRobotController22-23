@@ -17,13 +17,6 @@ apply from: '../build.dependencies.gradle'
 
 android {
     namespace = 'org.firstinspires.ftc.teamcode'
-    defaultConfig {
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [ eventBusIndex : 'org.firstinspires.ftc.teamcode.api.eventbus.MyEventBusIndex' ]
-            }
-        }
-    }
 }
 
 dependencies {
@@ -33,6 +26,4 @@ dependencies {
     implementation 'org.ftclib.ftclib:core:2.0.1'
     implementation 'org.apache.commons:commons-math3:3.6.1'
     implementation 'com.acmerobotics.roadrunner:core:0.5.5'
-    implementation 'org.greenrobot:eventbus:3.3.1'
-    annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.3.1'
 }
