@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.cv;
 
+import com.qualcomm.robotcore.util.Range;
+
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -69,10 +71,11 @@ public class RGBPipeline extends OpenCvPipeline {
     }
 
     private Mat cropCenter(Mat input, double percent) {
+        double p = Range.clip(percent, 0.0, 1.0);
         int centerRow = input.rows()/2;
         int centerCol = input.cols()/2;
-        int rows = (int)(input.rows() * percent);
-        int cols = (int)(input.cols() * percent);
+        int rows = (int)(input.rows() * p);
+        int cols = (int)(input.cols() * p);
 
 //        System.out.println("Input dims: " + input.rows() + ", " + input.cols());
 //        System.out.println("Corner1: " + new Point((double)(centerCol - (cols/2)), (double)(centerRow - (rows/2))));
