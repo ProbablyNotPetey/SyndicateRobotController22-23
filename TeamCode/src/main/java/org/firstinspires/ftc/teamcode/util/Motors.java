@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.util;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorController;
 import java.util.Arrays;
 import java.util.List;
 
+@Deprecated
 public class Motors {
     // Fields
     private DcMotor[] motors;

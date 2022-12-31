@@ -1,14 +1,15 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.opmode.teleop;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 
-@TeleOp(name = "SyndiOp")
+@TeleOp(name = "Syndicate TeleOp (Old)", group = "Old opmodes")
 //@Disabled
-public class SyndicateTestTeleOp extends LinearOpMode {
+public class SyndicateTestTeleOpOld extends LinearOpMode {
 
     DcMotor FL;
     DcMotor FR;

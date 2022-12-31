@@ -1,8 +1,4 @@
-package org.firstinspires.ftc.teamcode;
-
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
+package org.firstinspires.ftc.teamcode.util;
 
 import java.util.function.Function;
 

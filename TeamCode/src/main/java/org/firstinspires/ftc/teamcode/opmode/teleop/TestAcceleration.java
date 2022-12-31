@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.opmode.teleop;
 
 import android.os.Build;
 
@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp(name = "Test SyndiOp Accel")
+@TeleOp(name = "Syndicate Accel TeleOp (Old)", group = "Old opmodes")
 //@Disabled
 public class TestAcceleration extends LinearOpMode {
 
