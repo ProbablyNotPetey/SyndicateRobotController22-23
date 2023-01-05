@@ -13,12 +13,12 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.CRServo;
 
-@TeleOp(name = "Test TeleOp", group = "Old opmodes")
+@TeleOp(name = "Supersonics TeleOp: Scuffed Edition")
 //@Disabled
-public class TestTeleOp extends LinearOpMode {
+public class TestKinematics extends LinearOpMode {
 
-    DcMotor FL , FR , BL , BR , slides;
-    Servo arm , gripper;
+    DcMotor FL , FR , BL , BR , slides , gripper;
+    Servo arm;
     BNO055IMU IMU;
     Orientation lastAngles = new Orientation();
     double globalAngle, correction;
@@ -39,7 +39,7 @@ public class TestTeleOp extends LinearOpMode {
 
         slides = hardwareMap.get(DcMotor.class , "slides");
         arm = hardwareMap.get(Servo.class , "arm");
-        gripper = hardwareMap.get(Servo.class , "gripper");
+        gripper = hardwareMap.get(DcMotor.class , "gripper");
 
         // FR.setDirection(DcMotor.Direction.REVERSE);
         // BR.setDirection(DcMotor.Direction.REVERSE);
@@ -57,6 +57,8 @@ public class TestTeleOp extends LinearOpMode {
         BL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         slides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         slides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        gripper.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        gripper.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
 
@@ -120,10 +122,18 @@ public class TestTeleOp extends LinearOpMode {
             if(slides.getCurrentPosition() < -280)
                 arm.setPosition(armPos);
 
-            if(gamepad1.right_trigger > 0.5)
-                gripper.setPosition(0.85);
-            else
-                gripper.setPosition(0);
+            if(gamepad1.right_trigger > 0.5) {
+                gripper.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                gripper.setPower(-0.2);
+            }
+            else {
+                gripper.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                gripper.setTargetPosition(0);
+                gripper.setPower(0.2);
+                gripper.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                if(gripper.getCurrentPosition() < 20)
+                    gripper.setPower(0);
+            }
 
 
             telemetry.addData("Status", "Running");

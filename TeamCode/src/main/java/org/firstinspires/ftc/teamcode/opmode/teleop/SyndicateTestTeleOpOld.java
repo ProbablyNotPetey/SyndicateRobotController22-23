@@ -15,6 +15,7 @@ public class SyndicateTestTeleOpOld extends LinearOpMode {
     DcMotor FR;
     DcMotor BL;
     DcMotor BR;
+    DcMotor AM;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -23,6 +24,7 @@ public class SyndicateTestTeleOpOld extends LinearOpMode {
         FR = hardwareMap.get(DcMotor.class, "FR");
         BL = hardwareMap.get(DcMotor.class, "BL");
         BR = hardwareMap.get(DcMotor.class, "BR");
+        //AM = hardwareMap.get(DcMotor.class, "AM");
 
         // FR.setDirection(DcMotor.Direction.REVERSE);
         // BR.setDirection(DcMotor.Direction.REVERSE);
@@ -31,12 +33,22 @@ public class SyndicateTestTeleOpOld extends LinearOpMode {
         FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //AM.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         FR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         FL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         BR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         BL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //AM.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+
+        /*if(gamepad1.b)
+        {
+            armMotor.setPower();
+            armMotor.setPosition();
+
+        }
+        */
 
         telemetry.addData("Status", "Wait for start");
         telemetry.update();
@@ -50,6 +62,7 @@ public class SyndicateTestTeleOpOld extends LinearOpMode {
             double y = gamepad1.left_stick_y / 3;
             double x = gamepad1.left_stick_x / 3;
             double rx = gamepad1.right_stick_x / 3;
+
 
             // FL.setPower(y - x - rx);
             // FR.setPower(y + x + rx);

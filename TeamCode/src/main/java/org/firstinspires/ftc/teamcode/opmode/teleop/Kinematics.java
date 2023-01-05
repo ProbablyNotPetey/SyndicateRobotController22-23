@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.CRServo;
 
 @TeleOp(name = "Kinematic Drive")
-//@Disabled
+@Disabled
 public class Kinematics extends LinearOpMode {
 
     DcMotor FL;
