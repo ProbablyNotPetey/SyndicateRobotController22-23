@@ -36,7 +36,7 @@ public class RGBPipeline extends OpenCvPipeline {
 
 
         //Change percent to whatever's best.
-        submat = cropCenter(bgrInput, 0.3);
+        submat = cropCenter(bgrInput, 0.3, 0.0, 0.0);
 
         Core.split(submat, bgrChannels);
 
@@ -46,8 +46,8 @@ public class RGBPipeline extends OpenCvPipeline {
 
         double max = Math.max(meanB, Math.max(meanG, meanR));
 
-        if(max == meanB) parkingZone = 2;
-        else if(max == meanG) parkingZone = 1;
+        if(max == meanG) parkingZone = 2;
+        else if(max == meanB) parkingZone = 1;
         else parkingZone = 0;
 
 
@@ -63,27 +63,32 @@ public class RGBPipeline extends OpenCvPipeline {
     }
 
     /**
-     * Returns a value from -1 to 2 depending on the parking zone. 0 - 2 corresponds to R, G, and B zones. -1 means val hasn't been calculated yet.
+     * Returns a value from -1 to 2 depending on the parking zone. 0 - 2 corresponds to R, B, and G zones (yes). -1 means val hasn't been calculated yet.
      * @return  zone to park in. -1 means hasn't been calculated yet
      */
     public int getParkingZone() {
         return parkingZone;
     }
 
-    private Mat cropCenter(Mat input, double percent) {
+    private Mat cropCenter(Mat input, double percent, double offsetX, double offsetY) {
+
         double p = Range.clip(percent, 0.0, 1.0);
         int centerRow = input.rows()/2;
         int centerCol = input.cols()/2;
         int rows = (int)(input.rows() * p);
         int cols = (int)(input.cols() * p);
 
+        double x = Range.clip(offsetX, -1.0, 1.0) * (double)(centerCol - (cols/2));
+        double y = Range.clip(offsetY, -1.0, 1.0) * (double)(centerRow - (rows/2));
+
+
 //        System.out.println("Input dims: " + input.rows() + ", " + input.cols());
 //        System.out.println("Corner1: " + new Point((double)(centerCol - (cols/2)), (double)(centerRow - (rows/2))));
 //        System.out.println("Corner2: " + new Point((double)(centerCol - (cols/2)) + cols, (double)(centerRow - (rows/2)) + rows));
 
         return input.submat(new Rect(
-                new Point((double)(centerCol - (cols/2)), (double)(centerRow - (rows/2))),
-                new Point((double)(centerCol - (cols/2)) + cols, (double)(centerRow - (rows/2)) + rows)
+                new Point((double)(centerCol - (cols/2)) + x, (double)(centerRow - (rows/2))+ y),
+                new Point((double)(centerCol - (cols/2)) + cols + x, (double)(centerRow - (rows/2)) + rows + y)
         ));
     }
 }
